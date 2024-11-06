@@ -7,9 +7,10 @@ Este repositório contém um **Sistema de Gestão de Barbearia** desenvolvido co
 O sistema inclui as seguintes funcionalidades principais:
 
 - **Página Inicial**: Um painel de boas-vindas com botões de navegação para acessar diferentes seções do sistema. Animações suaves e uma imagem de fundo tornam a experiência de entrada mais agradável.
-- **Cadastro de Clientes**: Permite cadastrar novos clientes com informações como nome completo, e-mail, cidade e telefone.
 - **Consulta de Clientes**: Sistema de busca que filtra clientes com base em nome e e-mail, exibindo-os em uma tabela.
+- **Alteração de Clientes e Cadastro**: Sistema rápido para alterar e cadastrar novos clientes.
 - **Gestão de Produtos e Serviços**: Navegação rápida para acessar as páginas de produtos e serviços oferecidos pela barbearia.
+- **Consulta de Forncedores**: Sistema de busca que filtra Fornecedores com base em nome e e-mail, exibindo-os em uma tabela.
 
 ## 🖼️ Capturas de Tela
 
