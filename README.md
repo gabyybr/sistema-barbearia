@@ -61,4 +61,4 @@ Acesse o diretório do projeto:
 Este projeto foi desenvolvido para fins educacionais.
 
 ##📧 Contato
-Para dúvidas ou sugestões sobre este projeto, entre em contato através de leonardo.ab05@aluno.ifsc.edu.br.
+Para dúvidas ou sugestões sobre este projeto, entre em contato através de suportesistemabarbearia@gmail.com.
