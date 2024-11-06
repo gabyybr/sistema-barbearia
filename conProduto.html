@@ -3,20 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/estilo.css">
   <title>Sistema Barbearia - Relatório de Entrada e Saída de Produtos</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-      input[type="date"],
-        input[type="text"],
-        select {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); 
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
 
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    li {
+      float: left;
+      border-right: 1px solid #bbb;
+    }
+
+    li:last-child {
+      border-right: none;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: #04AA6D;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+      font-weight: bold;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+
+    input[type="date"], input[type="text"], select {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); 
+    }
+
+    input[type="submit"], a.boton-elegante {
+      display: inline-block;
+      width: 100%;
+      padding: 6px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    input[type="submit"]:hover, a.boton-elegante:hover {
+      background-color: #555;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #333;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -33,29 +124,25 @@
   <h1>Relatório de Entrada e Saída de Produtos</h1>
 
   <div class="container">
-    <div>
-        <form id="filtroRelatorio" onsubmit="gerarRelatorio(); return false;">
-            <label for="dataInicio">Data de Início:</label>
-            <input type="date" id="dataInicio" name="dataInicio">
-    
-            <label for="dataFim">Data de Fim:</label>
-            <input type="date" id="dataFim" name="dataFim">
-    
-            <label for="produto">Produto:</label>
-            <input type="text" id="produto" name="produto" placeholder="Nome do Produto">
-    
-            <label for="tipoTransacao">Tipo de Transação:</label>
-            <select id="tipoTransacao" name="tipoTransacao">
-                <option value="todos">Todos</option>
-                <option value="entrada">Entrada</option>
-                <option value="saida">Saída</option>
-            </select>
-    
-            <input type="submit" value="Gerar Relatório">
-        </form>
-    </div>
-    
-
+    <form id="filtroRelatorio" onsubmit="filtrarRelatorio(); return false;">
+      <label for="dataInicio">Data de Início:</label>
+      <input type="date" id="dataInicio" name="dataInicio">
+  
+      <label for="dataFim">Data de Fim:</label>
+      <input type="date" id="dataFim" name="dataFim">
+  
+      <label for="produto">Produto:</label>
+      <input type="text" id="produto" name="produto" placeholder="Nome do Produto">
+  
+      <label for="tipoTransacao">Tipo de Transação:</label>
+      <select id="tipoTransacao" name="tipoTransacao">
+        <option value="todos">Todos</option>
+        <option value="entrada">Entrada</option>
+        <option value="saida">Saída</option>
+      </select>
+  
+      <input type="submit" value="Gerar Relatório">
+    </form>
   </div>
 
   <div class="container" style="justify-content: center;">
@@ -122,22 +209,20 @@
   </div>
 
   <script>
-    document.getElementById('searchForm').addEventListener('submit', function(event) {
-      event.preventDefault();
+    function filtrarRelatorio() {
       const dataInicio = document.getElementById('dataInicio').value;
       const dataFim = document.getElementById('dataFim').value;
       const produtoInput = document.getElementById('produto').value.toLowerCase();
       const tipoTransacao = document.getElementById('tipoTransacao').value.toLowerCase();
       const table = document.getElementById('reportTable');
       const rows = table.getElementsByTagName('tr');
-      let found = false;
+      let encontrouResultado = false;
 
       for (let i = 1; i < rows.length; i++) {
         let dataCell = rows[i].getElementsByTagName('td')[0].innerText;
         let produtoCell = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
-        let tipoCell = rows[i].getElementsByTagName('td')[4].innerText.toLowerCase();
+        let tipoCell = rows[i].getElementsByTagName('td')[5].innerText.toLowerCase();
         
-        // Filtrando por Data, Produto e Tipo de Transação
         if (
           (dataInicio === '' || dataCell >= dataInicio) &&
           (dataFim === '' || dataCell <= dataFim) &&
@@ -145,15 +230,16 @@
           (tipoTransacao === 'todos' || tipoCell.includes(tipoTransacao))
         ) {
           rows[i].style.display = '';
-          found = true;
+          encontrouResultado = true;
         } else {
           rows[i].style.display = 'none';
         }
       }
 
-      table.style.display = found ? 'table' : 'none';
-    });
+      table.style.display = encontrouResultado ? 'table' : 'none';
+    }
   </script>
 
 </body>
 </html>
+
