@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/estilo.css">
+  <title>Sistema Barbearia - Relatório de Entrada e Saída de Produtos</title>
+  <style>
+      input[type="date"],
+        input[type="text"],
+        select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); 
+        }
+
+  </style>
+</head>
+<body>
+
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="Conscliente.html">Clientes</a></li>
+    <li><a href="AlterarCliente.html">Alterar Cliente</a></li>
+    <li><a href="conProduto.html" class="active">Produtos</a></li>
+    <li><a href="conServicos.html">Serviços</a></li>
+    <li><a href="ConsForn.html">Fornecedores</a></li>
+  </ul>
+
+  <h1>Relatório de Entrada e Saída de Produtos</h1>
+
+  <div class="container">
+    <div>
+        <form id="filtroRelatorio" onsubmit="gerarRelatorio(); return false;">
+            <label for="dataInicio">Data de Início:</label>
+            <input type="date" id="dataInicio" name="dataInicio">
+    
+            <label for="dataFim">Data de Fim:</label>
+            <input type="date" id="dataFim" name="dataFim">
+    
+            <label for="produto">Produto:</label>
+            <input type="text" id="produto" name="produto" placeholder="Nome do Produto">
+    
+            <label for="tipoTransacao">Tipo de Transação:</label>
+            <select id="tipoTransacao" name="tipoTransacao">
+                <option value="todos">Todos</option>
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+            </select>
+    
+            <input type="submit" value="Gerar Relatório">
+        </form>
+    </div>
+    
+
+  </div>
+
+  <div class="container" style="justify-content: center;">
+    <table id="reportTable">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Valor Unitário</th>
+          <th>Valor Total</th>
+          <th>Tipo de Transação</th>
+          <th>Responsável</th>
+          <th>Observações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2024-10-01</td>
+          <td>Shampoo</td>
+          <td>10</td>
+          <td>R$ 15,00</td>
+          <td>R$ 150,00</td>
+          <td>Entrada</td>
+          <td>Ana</td>
+          <td>Recebido em bom estado</td>
+        </tr>
+        <tr>
+          <td>2024-10-02</td>
+          <td>Pomada Modeladora</td>
+          <td>5</td>
+          <td>R$ 25,00</td>
+          <td>R$ 125,00</td>
+          <td>Saída</td>
+          <td>Carlos</td>
+          <td>Produto entregue</td>
+        </tr>
+        <tr>
+          <td>2024-10-03</td>
+          <td>Loção Pós-Barba</td>
+          <td>8</td>
+          <td>R$ 44,90</td>
+          <td>R$ 359,20</td>
+          <td>Entrada</td>
+          <td>Mariana</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>2024-10-04</td>
+          <td>Navalha</td>
+          <td>2</td>
+          <td>R$ 30,00</td>
+          <td>R$ 60,00</td>
+          <td>Saída</td>
+          <td>Lucas</td>
+          <td>Produto avariado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container">
+    <a href="cadProduto.html" class="boton-elegante">Novo Cadastro</a>
+  </div>
+
+  <script>
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const dataInicio = document.getElementById('dataInicio').value;
+      const dataFim = document.getElementById('dataFim').value;
+      const produtoInput = document.getElementById('produto').value.toLowerCase();
+      const tipoTransacao = document.getElementById('tipoTransacao').value.toLowerCase();
+      const table = document.getElementById('reportTable');
+      const rows = table.getElementsByTagName('tr');
+      let found = false;
+
+      for (let i = 1; i < rows.length; i++) {
+        let dataCell = rows[i].getElementsByTagName('td')[0].innerText;
+        let produtoCell = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+        let tipoCell = rows[i].getElementsByTagName('td')[4].innerText.toLowerCase();
+        
+        // Filtrando por Data, Produto e Tipo de Transação
+        if (
+          (dataInicio === '' || dataCell >= dataInicio) &&
+          (dataFim === '' || dataCell <= dataFim) &&
+          (produtoInput === '' || produtoCell.includes(produtoInput)) &&
+          (tipoTransacao === 'todos' || tipoCell.includes(tipoTransacao))
+        ) {
+          rows[i].style.display = '';
+          found = true;
+        } else {
+          rows[i].style.display = 'none';
+        }
+      }
+
+      table.style.display = found ? 'table' : 'none';
+    });
+  </script>
+
+</body>
+</html>

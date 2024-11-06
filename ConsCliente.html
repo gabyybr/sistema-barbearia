@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/estilo.css">
+  <title>Sistema Barbearia - Consulta de Clientes</title>
+</head>
+<body>
+
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a class="active" href="Conscliente.html">Clientes</a></li>
+    <li><a href="AlterarCliente.html">Alterar Cliente</a></li>
+    <li><a href="conProduto.html">Produtos</a></li>
+    <li><a href="conServicos.html">Serviços</a></li>
+    <li><a href="ConsForn.html">Fornecedores</a></li>
+  </ul>
+
+  <h1>Consulta de Clientes</h1>
+
+  <div class="container">
+    <div class="form-container">
+      <form id="searchForm">
+        <input type="text" id="name" name="name" placeholder="Digite o nome completo">
+        <input type="text" id="mail" name="mail" placeholder="Digite o e-mail">
+        <input type="submit" value="Consultar">
+      </form>
+    </div>
+  </div>
+
+  <div class="container" style="justify-content: center;">
+    <table id="clientTable">
+      <thead>
+        <tr>
+          <th>Nome completo</th>
+          <th>E-mail</th>
+          <th>Cidade</th>
+          <th>Telefone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>João Pessoa</td>
+          <td>joaop@hotmail.com</td>
+          <td>Chapecó (SC)</td>
+          <td>(49) 2101-2837</td>
+        </tr>
+        <tr>
+          <td>Maria Clara Neves</td>
+          <td>marianeves123@gmail.com</td>
+          <td>Pinhalzinho (SC)</td>
+          <td>(47) 3112-7544</td>
+        </tr>
+        <tr>
+          <td>Felipe Duarte da Silva</td>
+          <td>felipe23dias@outlook.com</td>
+          <td>Xaxim (SC)</td>
+          <td>(49) 2037-6570</td>
+        </tr>
+        <tr>
+          <td>Alan Melo Dias</td>
+          <td>alanmelo@gmail.com</td>
+          <td>São Miguel do Oeste (SC)</td>
+          <td>(49) 3025-4433</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container">
+    <a href="cadCliente.html" class="boton-elegante">Novo Cadastro</a>
+  </div>
+
+  <script>
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const nameInput = document.getElementById('name').value.toLowerCase();
+      const mailInput = document.getElementById('mail').value.toLowerCase();
+      const table = document.getElementById('clientTable');
+      const rows = table.getElementsByTagName('tr');
+      let found = false;
+
+      for (let i = 1; i < rows.length; i++) {
+        let nameCell = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
+        let mailCell = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+
+        if ((nameInput === '' || nameCell.includes(nameInput)) && (mailInput === '' || mailCell.includes(mailInput))) {
+          rows[i].style.display = '';
+          found = true;
+        } else {
+          rows[i].style.display = 'none';
+        }
+      }
+
+      table.style.display = found ? 'table' : 'none';
+    });
+  </script>
+
+</body>
+</html>

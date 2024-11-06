@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/estilo.css">
+  <title>Sistema Barbearia - Início</title>
+
+  <style>
+    /* Fundo da página com imagem */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://conteudo.solutudo.com.br/wp-content/uploads/2020/01/BARBEARIA-ARACAJU-BARBEIRO-MESTRE.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Menu de navegação */
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+    }
+
+    li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 14px 20px;
+      display: block;
+      transition: background-color 0.3s;
+    }
+
+    li a:hover, .active {
+      background-color: #04AA6D;
+      border-radius: 4px;
+    }
+
+    /* Animação para o conteúdo principal */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Estilo da seção principal */
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      max-width: 800px;
+      margin-top: 100px;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    .hero-section h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .hero-section p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    /* Botões de ação */
+    .hero-section .button-group a {
+      background-color: #04AA6D;
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 28px;
+      margin: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.2s;
+      font-weight: bold;
+    }
+
+    .hero-section .button-group a:hover {
+      background-color: #037f54;
+      transform: scale(1.05);
+    }
+
+    /* Rodapé */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #f5f5f5;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu de Navegação -->
+  <ul>
+    <li><a href="index.html" class="active">Início</a></li>
+    <li><a href="Conscliente.html">Clientes</a></li>
+    <li><a href="AlterarCliente.html">Alterar Cliente</a></li>
+    <li><a href="conProduto.html">Produtos</a></li>
+    <li><a href="conServicos.html">Serviços</a></li>
+    <li><a href="ConsForn.html">Fornecedores</a></li>
+  </ul>
+
+
+  <!-- Seção Principal com Animações -->
+  <div class="hero-section fade-in">
+    <h1>Bem-vindo ao Sistema de Barbearia</h1>
+    <p>Gerencie seus clientes, produtos e serviços de forma rápida e eficiente. Navegue pelas opções abaixo para explorar todas as funcionalidades do sistema.</p>
+    
+    <div class="button-group">
+      <a href="Conscliente.html">Ver Clientes</a>
+      <a href="CadCliente.html">Cadastrar Novo Cliente</a>
+      <a href="conProduto.html">Explorar Produtos</a>
+      <a href="conServicos.html">Serviços</a>
+
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <div class="footer">
+    <p>&copy; 2023 Barbearia. Todos os direitos reservados.</p>
+  </div>
+
+</body>
+</html>
